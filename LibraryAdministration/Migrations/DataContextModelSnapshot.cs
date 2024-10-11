@@ -22,7 +22,7 @@ namespace LibraryAdministration.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("LibraryAdministration.Database.Models.Book", b =>
+            modelBuilder.Entity("LibraryAdministration.Models.Database.Book", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -41,7 +41,7 @@ namespace LibraryAdministration.Migrations
                     b.Property<DateTime>("CreatedOn")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Genres")
+                    b.Property<string>("Genre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -68,7 +68,7 @@ namespace LibraryAdministration.Migrations
                     b.ToTable("Book");
                 });
 
-            modelBuilder.Entity("LibraryAdministration.Database.Models.LibraryAdministrator", b =>
+            modelBuilder.Entity("LibraryAdministration.Models.Database.LibraryAdministrator", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -101,7 +101,7 @@ namespace LibraryAdministration.Migrations
                     b.ToTable("LibraryAdministrator");
                 });
 
-            modelBuilder.Entity("LibraryAdministration.Database.Models.Reader", b =>
+            modelBuilder.Entity("LibraryAdministration.Models.Database.Reader", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -143,9 +143,9 @@ namespace LibraryAdministration.Migrations
                     b.ToTable("Reader");
                 });
 
-            modelBuilder.Entity("LibraryAdministration.Database.Models.Book", b =>
+            modelBuilder.Entity("LibraryAdministration.Models.Database.Book", b =>
                 {
-                    b.HasOne("LibraryAdministration.Database.Models.Reader", "Reader")
+                    b.HasOne("LibraryAdministration.Models.Database.Reader", "Reader")
                         .WithMany()
                         .HasForeignKey("ReaderId");
 

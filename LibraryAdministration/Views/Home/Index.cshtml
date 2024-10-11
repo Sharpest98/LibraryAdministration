@@ -1,8 +1,64 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
-}
+﻿@model LibraryAdministration.Models.DTO.AccountDTO.LoginDTO
+@if (TempData["InvalidCredentials"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        @TempData["InvalidCredentials"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+    <script>
+        setTimeout(function () {
+            
+        }, 10000);
+    </script>
+}
+<body class="d-flex h-100 text-center text-black">
+
+    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+        <header class="mb-auto">
+            <div>
+                <h3 class="float-md-none mb-0">LibraryAdministrator</h3>
+
+            </div>
+        </header>
+
+        <main class="px-3">
+            <main class="form-signin">
+                <form asp-action="Login" runat="server">
+                    <img class="mb-4" src="~/images/logo2.png" alt="" width="200" height="150">
+                    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
+
+                    <div class="form-floating">
+                        <input type="text" maxlength="40" asp-for="UserName" class="form-control" id="floatingInput" placeholder="Login" required>
+                        <label for="floatingInput">Login</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" maxlength="32" asp-for="Password" name="pass" runat="server" class="form-control" id="floatingPassword" placeholder="Password" required>
+                        <label for="floatingPassword">Password</label>
+                    </div>
+
+
+                    <button class="w-100 btn btn-lg btn-primary" type="submit" asp-controller="LibraryAdministrator" asp-action="Login">Sign in</button>
+
+                    <a asp-controller="LibraryAdministrator" asp-action="RegistrationPage">Register</a>
+
+                    <p class="mt-5 mb-3 text-muted">&copy; 2024</p>
+                </form>
+            </main>
+
+        </main>
+
+        <footer class="mt-auto text-white-50">
+        </footer>
+    </div>
+
+
+
+</body>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -1,7 +1,7 @@
-﻿using LibraryAdministration.Database.Models.Common;
+﻿using LibraryAdministration.Models.Database.Common;
 using System.ComponentModel.DataAnnotations;
 
-namespace LibraryAdministration.Database.Models
+namespace LibraryAdministration.Models.Database
 {
     public class Book : ModelBase
     {
@@ -10,7 +10,7 @@ namespace LibraryAdministration.Database.Models
         public required string Author { get; set; }
         public required string Title { get; set; }
         public required int ReleaseYear { get; set; }
-        public required string Genres { get; set; }
+        public required string Genre { get; set; }
         public Reader? Reader { get; set; }
         public int? ReaderId { get; set; }
     }
