@@ -1,7 +1,7 @@
-﻿using LibraryAdministration.Database.Models.Common;
+﻿using LibraryAdministration.Models.Database.Common;
 using System.ComponentModel.DataAnnotations;
 
-namespace LibraryAdministration.Database.Models
+namespace LibraryAdministration.Models.Database
 {
     public class Reader : ModelBase
     {

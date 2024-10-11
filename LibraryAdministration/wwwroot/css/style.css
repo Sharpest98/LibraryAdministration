@@ -1,0 +1,137 @@
+﻿/*
+ * Globals
+ */
+
+
+
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none;
+}
+
+
+
+
+
+
+.cover-container {
+    max-width: 42em;
+}
+
+
+
+
+.nav-masthead .nav-link {
+    padding: .25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, .5);
+    background-color: transparent;
+    border-bottom: .25rem solid transparent;
+}
+
+    .nav-masthead .nav-link:hover,
+    .nav-masthead .nav-link:focus {
+        border-bottom-color: rgba(255, 255, 255, .25);
+    }
+
+    .nav-masthead .nav-link + .nav-link {
+        margin-left: 1rem;
+    }
+
+.nav-masthead .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+html,
+body {
+    height: auto;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin-bottom: 7px;
+    margin: auto;
+}
+
+    .form-signin .checkbox {
+        font-weight: 400;
+    }
+
+    .form-signin .form-floating:focus-within {
+        z-index: 2;
+    }
+
+    .form-signin input[type="login"] {
+        margin-bottom: 10px;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+
+    .form-signin input[type="password"] {
+        margin-bottom: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+.form-floating
+{
+    margin-bottom:10px !important;
+}
+.card-body {
+    background-color: #FFF8DC !important;
+}
+h1 {
+    margin-bottom: 1.5rem !important;
+}
+.form-group{
+    margin-bottom: 5px !important
+}
+.add-book-button
+{
+    float: right;
+}
+.bookTable
+{
+    margin-top: 20px !important;
+}
+.btn-arw {
+    padding-left: 0em !important;
+    padding-right: 0em !important;
+    padding-bottom: .1em !important;
+    padding-top: 0em !important;
+    height: 18px !important;
+    width:18px !important;
+}
+.editbl {
+    vertical-align: top;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0 !important;
+}
+
+input[type=number] {
+    -moz-appearance: textfield !important;
+}
+.bold-link {
+    color: black;
+    font-weight:600;
+}
+
+    .bold-link:hover {
+        color: black;
+        text-decoration: none; 
+    }

@@ -1,0 +1,155 @@
+﻿@model List<LibraryAdministration.Models.DTO.ReaderDTO.ReaderDTO>
+@{
+    var readersCount = Model.Count;
+}
+@{
+    ViewData["Title"] = "Library Administration";
+}
+@if (TempData["SuccessMessage"] != null)
+{
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        @TempData["SuccessMessage"]
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+
+        
+        <script>
+            setTimeout(function () {
+                window.location.href = '@Url.Action("Index", "Reader")'; 
+            }, 3000);
+        </script>
+}
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Book" asp-action="Index">
+            <img src="~/images/logo.png" alt="Library Logo" width="30" class="d-inline-block align-text-top">
+            LibraryAdministration
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Book" asp-action="Index">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page"  asp-controller="Reader" asp-action="Index">Readers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Book" asp-action="TakeBookPage">Take Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Book" asp-action="ReturnBookPage">Return Book</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <!-- Title -->
+    <h1 class="mb-4 text-center">List of Readers</h1>
+
+
+
+    <!-- Search Section -->
+    <form asp-controller="Reader" asp-action="FindReader" method="get">
+    <div class="row search-section mb-4">
+        <div class="col-md-4">
+                <label for="SearchByText">Search</label>
+                <input type="text" id="SearchByText" name="SearchByText" minlength="2" maxlength="20" placeholder="Enter text..." class="form-control search-field" />
+        </div>
+        
+        <div class="col-md-8 d-flex align-items-end justify-content-between">
+            <button type="submit" class="btn btn-primary search-button">Search</button>
+            <a asp-controller="Reader" asp-action="AddReaderPage" class="btn btn-success add-book-button ml-2">Add Reader</a>
+        </div>
+    </div>
+    </form>
+
+
+
+
+    <!-- Reader Table -->
+    <div>
+        <p>Total Readers: @readersCount</p> 
+    </div>
+    <table class="table table-striped table-bordered" id="readerTable">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name
+                    <a asp-action="SortReader" asp-route-SortByNameAsc="true" asp-route-SortByNameDesc="false" class="btn btn-link btn-arw"><img class="editbl" src="~/images/arrow-up.png"></a>
+                    <a asp-action="SortReader" asp-route-SortByNameAsc="false" asp-route-SortByNameDesc="true" class="btn btn-link btn-arw"><img class="editbl" src="~/images/arrow-down.png"></a>
+                </th>
+                <th scope="col">Last Name
+                    <a asp-action="SortReader" asp-route-SortByLastNameAsc="true" asp-route-SortByLastNameDesc="false" class="btn btn-link btn-arw"><img class="editbl" src="~/images/arrow-up.png"></a>
+                    <a asp-action="SortReader" asp-route-SortByLastNameAsc="false" asp-route-SortByLastNameDesc="true" class="btn btn-link btn-arw"><img class="editbl" src="~/images/arrow-down.png"></a>
+                </th>
+                <th scope="col">Home address</th>
+                <th scope="col">Phone Number</th>               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var reader in Model)
+            {
+                <tr>
+                    <td>@reader.Id</td>
+                    <td><a asp-controller="Reader" asp-action="GetInfoAboutReader" asp-route-id="@reader.Id" class="bold-link">@reader.Name</a></td>
+                    <td><a asp-controller="Reader" asp-action="GetInfoAboutReader" asp-route-id="@reader.Id" class="bold-link">@reader.LastName </a></td>
+                    <td>@reader.Address</td>
+                    <td>@reader.PhoneNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center">
+            <li class="page-item">
+                <button class="page-link" id="prevPage" onclick="prevPage()">Previous</button>
+            </li>
+            <li class="page-item">
+                <button class="page-link" id="nextPage" onclick="nextPage()">Next</button>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<script>
+    var currentPage = 1;
+    var recordsPerPage = 15;
+    var rows = document.querySelectorAll("#bookTable tbody tr");
+
+    function displayPage(page) {
+        var start = (page - 1) * recordsPerPage;
+        var end = start + recordsPerPage;
+
+        rows.forEach((row, index) => {
+            if (index >= start && index < end) {
+                row.style.display = "";
+            } else {
+                row.style.display = "none";
+            }
+        });        
+        document.getElementById("prevPage").disabled = page === 1;
+        document.getElementById("nextPage").disabled = page === Math.ceil(rows.length / recordsPerPage);
+    }
+
+    function prevPage() {
+        if (currentPage > 1) {
+            currentPage--;
+            displayPage(currentPage);
+        }
+    }
+
+    function nextPage() {
+        if (currentPage < Math.ceil(rows.length / recordsPerPage)) {
+            currentPage++;
+            displayPage(currentPage);
+        }
+    }
+
+    displayPage(currentPage);
+</script>

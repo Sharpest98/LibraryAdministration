@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace LibraryAdministration.Database.Models
+namespace LibraryAdministration.Models.Database
 {
     public class LibraryAdministrator
     {

@@ -1,0 +1,104 @@
+﻿@model LibraryAdministration.Models.DTO.BookDTO.BookInfoDTO
+@{
+    ViewData["Title"] = "Library Administration";
+}
+@if (TempData["ImpossibleToDelete"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert">
+        @TempData["ImpossibleToDelete"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+
+    <script>
+        setTimeout(function () {
+           
+        }, 3000);
+    </script>
+}
+
+
+    
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Book" asp-action="Index">
+            <img src="~/images/logo.png" alt="Library Logo" width="30" class="d-inline-block align-text-top">
+            LibraryAdministration
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" asp-controller="Book" asp-action="Index">Books</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Reader" asp-action="Index">Readers</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Book" asp-action="TakeBookPage">Take Book</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" asp-controller="Book" asp-action="ReturnBookPage">Return Book</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--BookCard-->
+<div class="card mt-5">
+    <div class="card-header text-white bg-dark border-dark">
+        <h3 >Information About Book</h3>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <tbody>
+                <tr>
+                    <td><strong>BookId</strong></td>
+                    <td>@Model.Id</td>
+                </tr>
+                <tr>
+                    <td><strong>BookAuthor</strong></td>
+                    <td>@Model.Author</td>
+                </tr>
+                <tr>
+                    <td><strong>BookTitle</strong></td>
+                    <td>@Model.Title</td>
+                </tr>
+                <tr>
+                    <td><strong>BookYearOfRelease</strong></td>
+                    <td>@Model.ReleaseYear</td>
+                </tr>
+                <tr>
+                    <td><strong>BookGenre</strong></td>
+                    <td>@Model.Genre</td>
+                </tr>
+                <tr>
+                    <td><strong>ReaderName</strong></td>
+                    <td>@Model.ReaderName</td>
+                </tr>
+                <tr>
+                    <td><strong>ReaderLastName</strong></td>
+                    <td>@Model.ReaderLastName</td>
+                </tr>
+                <tr>
+                    <td><strong>ReaderAddress</strong></td>
+                    <td>@Model.ReaderAddress</td>
+                </tr>
+                <tr>
+                    <td><strong>Reader PhoneNumber</strong></td>
+                    <td>@Model.PhoneNumber</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="d-flex justify-content-between mt-4">
+            <a asp-controller="Book" asp-action="UpdateBookPage" asp-route-id="@Model.Id" class="btn btn-primary">Update</a>
+            <form asp-controller="Book" asp-action="DeleteBook" asp-route-id="@Model.Id"  onsubmit="return confirm('Are you sure you want to delete this book?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

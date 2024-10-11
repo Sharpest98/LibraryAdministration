@@ -1,4 +1,4 @@
-﻿using LibraryAdministration.Database.Models;
+﻿using LibraryAdministration.Models.Database;
 using Microsoft.EntityFrameworkCore;
 
 namespace LibraryAdministration.Database
@@ -7,7 +7,7 @@ namespace LibraryAdministration.Database
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Book> Book => Set<Book>();
